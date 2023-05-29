@@ -39,5 +39,7 @@ const AdminMenu = () => {
       </div> 
     </>
   );
-};
+}; 
+
+
 export default AdminMenu;
