@@ -136,7 +136,7 @@ code {
 }
 
 /* Register Page */
-form {
+.regis-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -186,7 +186,7 @@ form {
 
 /* Login Page */
 
-form {
+.form-login {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -195,7 +195,7 @@ form {
     margin: auto;
     height: 90vh;
 }
-form h2{
+.form-login h2{
   letter-spacing: 10px;
   font-weight: 400;
 }
@@ -236,4 +236,41 @@ form h2{
   
 .unregister:hover {
     color: #333;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  width: 75%; /* Adjust the width as per your preference */
+}
+
+.product-item:hover {
+  border-color: #aaa;
+}
+
+.product-image {
+  width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.product-info {
+  flex-grow: 1;
+}
+
+.product-title {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  color: black; /* Set text color to black */
+  text-decoration: none; /* Remove underline */
+}
+
+.product-description {
+  margin: 0;
+  color: black; /* Set text color to black */
+  text-decoration: none; /* Remove underline */
 }

@@ -33,7 +33,7 @@ const RegisterPage = () =>{
     };
     return(
         <Layout>
-            <form onSubmit={handleSubmit}>
+            <form className="regis-form" onSubmit={handleSubmit}>
                 <input
                 type="text"
                 value={name}
