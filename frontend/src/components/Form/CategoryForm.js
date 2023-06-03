@@ -11,9 +11,10 @@ const CategoryForm = ({handleSubmit, value, setValue}) => {
                     placeholder="Enter new category"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
+                    style={{ borderRadius: 0}}
                 />
             </div>
-            <button type="submit" className="btn btn-dark w-100">
+            <button type="submit" className="btn btn-dark w-100" style={{ borderRadius: 0}}>
                 Submit
             </button>                
         </form>

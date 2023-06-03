@@ -50,6 +50,7 @@ const LoginPage = () =>{
                 className="form-control"
                 id = "exampleInputEmail1"
                 placeholder="EMAIL"
+                style={{ borderRadius: 0}}
                 required
                 />
                 <input
@@ -59,6 +60,7 @@ const LoginPage = () =>{
                 className="form-control"
                 id = "exampleInputPassword1"
                 placeholder="PASSWORD"
+                style={{ borderRadius: 0}}
                 required
                 />
                 <button type="submit" className="loginbtn" >SIGN IN</button>

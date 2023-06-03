@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,6 +9,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  background-color: #f5f4f0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -17,19 +21,21 @@ code {
 /* Navbar */
 .navbar {
   text-transform: uppercase;
-  box-shadow: 0 8px 6px -6px gray;
-  --webkit-box-shadow: 0 8px 6px -6px gray;
+  box-shadow: 0 0.5rem 0.375rem -0.375rem gray;
+  --webkit-box-shadow: 0 0.5rem 0.375rem -0.375rem gray;
   transition: background-color 0.3s ease;
 }
 
 .navbar:hover {
   background-color: #1d1c1c;
 }
+
 .navbar-brand {
-  letter-spacing: 5px;
+  letter-spacing: 0.3125rem;
 }
-.navbar-brand h2{
-  letter-spacing: 25px;
+
+.navbar-brand h2 {
+  letter-spacing: 1.5625rem;
   margin-right: 3rem;
   font-weight: bold;
 }
@@ -38,12 +44,11 @@ code {
   color: white;
 }
 
-
 /* Footer */
 .footer {
   background-color: black;
   color: #1d1c1c;
-  padding: 15px;
+  padding: 0.9375rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,12 +62,12 @@ code {
 .footer-link {
   color: #1d1c1c;
   text-decoration: none;
-  margin: 0 10px;
-  font-size: 18px;
+  margin: 0 0.625rem;
+  font-size: 1.125rem;
   font-weight: 400;
   text-transform: uppercase;
   transition: color 0.3s ease;
-  letter-spacing:2px;
+  letter-spacing: 0.125rem;
 }
 
 .footer-link:hover {
@@ -71,33 +76,37 @@ code {
 
 /* Page Not Found */
 
-.pnf{
+.pnf {
   display: flex;
   min-height: 80vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.pnf-title{
-  font-size: 100px;
+
+.pnf-title {
+  font-size: 6.25rem;
   font-weight: 600;
 }
-.pnf-heading{
+
+.pnf-heading {
   font-weight: normal;
 }
-.pnf-btn{
+
+.pnf-btn {
   color: black;
-  border: 1px solid black;
+  border: 0.0625rem solid black;
   text-decoration: none;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 0.625rem;
+  margin-top: 0.625rem;
 }
 
 /* Landing page */
 
 .landing-pic-container {
-    flex: 1;
+  flex: 1;
 }
+
 .landing-pic-text {
   color: black;
   position: absolute;
@@ -109,6 +118,7 @@ code {
   text-decoration: none;
   z-index: 1;
 }
+
 .landing-pic-text:hover {
   text-decoration: underline;
 }
@@ -116,7 +126,7 @@ code {
 .landing-pic-container img {
   margin-top: 0;
   width: 100%;
-  height: 90vh;
+  height: 95vh;
   object-fit: cover;
 }
 
@@ -124,47 +134,70 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row; /* Display images vertically */
 }
 
 .left-image,
 .right-image {
-  width: 50rem; /* ปรับขนาดตามต้องการ */
-  height: 30rem; /* ปรับขนาดตามต้องการ */
+  width: 50rem;
+  height: 30rem;
   object-fit: fill;
-  border: 0.02rem solid black;
+  border: 0.0625rem solid black;
   margin: 3rem;
 }
 
+/* Media query for screens smaller than a certain width */
+@media (max-width: 600px) {
+  .dual-image-container {
+    flex-direction: column; /* Display images horizontally */
+  }
+  
+  .left-image,
+  .right-image {
+    margin: 1.5rem; /* Adjust margin for smaller screens */
+  }
+}
+
+/* Update Page */
+.update-form{
+  display: flex;
+  flex-direction: column;
+  width: 50%; /* 30rem in rem */
+  margin-left: 6%;
+  
+  
+}
 /* Register Page */
 .regis-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30rem;
+  width: 30rem; /* 30rem in rem */
   margin: auto;
   height: 95vh;
 }
+
 .form-control {
   width: 100%;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 16px;
+  margin-bottom: 1.25rem; /* 20px in rem */
+  padding: 0.625rem; /* 10px in rem */
+  font-size: 1rem; /* 16px in rem */
   border: none;
   background-color: #f5f5f5;
 }
 
 .regisbtn {
   width: 100%;
-  margin-top: 30px;
-  padding: 10px;
-  font-size: 16px;
+  margin-top: 1.875rem; /* 30px in rem */
+  padding: 0.625rem; /* 10px in rem */
+  font-size: 1rem; /* 16px in rem */
   border: none;
   background-color: #ffffff;
   color: #000000;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: 0.02rem solid #333333;
+  border: 0.0625rem solid #333333;
 }
 
 .regisbtn:hover {
@@ -176,8 +209,8 @@ code {
   display: block;
   text-align: center;
   color: #555;
-  font-size: 14px;
-  margin-top: 10px;
+  font-size: 0.875rem; /* 14px in rem */
+  margin-top: 0.625rem; /* 10px in rem */
 }
 
 .registered:hover {
@@ -187,64 +220,66 @@ code {
 /* Login Page */
 
 .form-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30rem;
-    margin: auto;
-    height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30rem; /* 30rem in rem */
+  margin: auto;
+  height: 90vh;
 }
-.form-login h2{
-  letter-spacing: 10px;
+
+.form-login h2 {
+  letter-spacing: 0.625rem; /* 10px in rem */
   font-weight: 400;
 }
+
 .form-control {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    background-color: #f5f5f5;
+  width: 100%;
+  margin-bottom: 1.25rem; /* 20px in rem */
+  padding: 0.625rem; /* 10px in rem */
+  font-size: 1rem; /* 16px in rem */
+  border: none;
+  background-color: #f5f5f5;
 }
 
 .loginbtn {
-    width: 100%;
-    margin-top: 30px;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    background-color: #ffffff;
-    color: #000000;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: 0.02rem solid #333333;
+  width: 100%;
+  margin-top: 1.875rem; /* 30px in rem */
+  padding: 0.625rem; /* 10px in rem */
+  font-size: 1rem; /* 16px in rem */
+  border: none;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 0.0625rem solid #333333;
 }
-  
+
 .loginbtn:hover {
-    background-color: #333333;
-    color: white;
+  background-color: #333333;
+  color: white;
 }
-  
+
 .unregister {
-    display: block;
-    text-align: center;
-    color: #555;
-    font-size: 14px;
-    margin-top: 1rem;
+  display: block;
+  text-align: center;
+  color: #555;
+  font-size: 0.875rem; /* 14px in rem */
+  margin-top: 0.625rem; /* 10px in rem */
 }
-  
+
 .unregister:hover {
-    color: #333;
+  color: #333;
 }
 
 .product-item {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  width: 75%; /* Adjust the width as per your preference */
+  margin-bottom: 1rem; /* 1rem in rem */
+  border: 0.0625rem solid #ccc;
+  padding: 1rem; /* 1rem in rem */
+  width: 75%; /* 75% in rem */
 }
 
 .product-item:hover {
@@ -252,10 +287,10 @@ code {
 }
 
 .product-image {
-  width: 5rem;
-  height: 5rem;
+  width: 5rem; /* 5rem in rem */
+  height: 5rem; /* 5rem in rem */
   object-fit: cover;
-  margin-right: 1rem;
+  margin-right: 1rem; /* 1rem in rem */
 }
 
 .product-info {
@@ -264,13 +299,25 @@ code {
 
 .product-title {
   margin: 0;
-  margin-bottom: 0.5rem;
-  color: black; /* Set text color to black */
-  text-decoration: none; /* Remove underline */
+  margin-bottom: 0.5rem; /* 0.5rem in rem */
+  color: black;
+  text-decoration: none;
 }
 
 .product-description {
   margin: 0;
-  color: black; /* Set text color to black */
-  text-decoration: none; /* Remove underline */
+  color: black;
+  text-decoration: none;
+}
+
+
+/* Search Box */
+.search-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input-container > div {
+  width: 95%; /* Adjust the width to your preference */
 }

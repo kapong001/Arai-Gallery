@@ -17,10 +17,10 @@ const AdminMenu = () => {
 
   return (
     <>
-      <div className='text-center'>
-        <div className='list-group'>
+      <div className='text-center' style={{ borderRadius: 0}}>
+        <div className='list-group' style={{ borderRadius: 0}}>
           <Link to="/dashboard/admin" className="list-group-item list-group-item-light" >
-            <h4>Admin Dashboard</h4>
+            <h5>Admin Dashboard</h5>
           </Link>
           
           <NavLink to="/dashboard/admin/create-category" className="list-group-item list-group-item-light">

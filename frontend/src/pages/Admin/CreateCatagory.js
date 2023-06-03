@@ -9,7 +9,7 @@ import { Modal } from 'antd';
 const CreateCatagory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState('');
-  const [open, setOpen] = useState(false); // Replace 'visible' with 'open'
+  const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(null);
   const [updatedName, setUpdatedName] = useState('');
 
@@ -106,16 +106,17 @@ const CreateCatagory = () => {
                       <td>{c.name}</td>
                       <td>
                         <button
-                          className="btn btn-light "
+                          className="btn btn-light"
                           onClick={() => {
                             setOpen(true);
                             setUpdatedName(c.name);
                             setSelected(c);
                           }}
+                          style={{ borderRadius: 0}}
                         >
                           Edit
                         </button>
-                        <button className="btn btn-light" onClick={() => handleDelete(c._id)}>
+                        <button className="btn btn-light" onClick={() => handleDelete(c._id)} style={{ borderRadius: 0}} >
                           Delete
                         </button>
                       </td>
@@ -124,12 +125,19 @@ const CreateCatagory = () => {
                 </tbody>
               </table>
             </div>
-            <Modal onCancel={() => setOpen(false)} footer={null} open={open}> {/* Replace 'visible' with 'open' */}
+            <Modal onCancel={() => setOpen(false)} footer={null} visible={open}>
               <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate} />
             </Modal>
           </div>
         </div>
       </div>
+      <style>
+        {`
+        .ant-input {
+          border-radius: 0;
+        }
+        `}
+      </style>
     </Layout>
   );
 };

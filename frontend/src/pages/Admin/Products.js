@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import AdminMenu from '../../components/AdminMenu';
 
@@ -53,7 +53,7 @@ const Products = () => {
                 <p>No products found.</p>
               ) : (
                 filteredProducts.map((p) => (
-                  <Link key={p._id} to={`/dashboard/admin/products/${p.slug}`} className="product-link">
+                  <NavLink key={p._id} to={`/dashboard/admin/products/${p.slug}`} className="product-link">
                     <div className="product-item">
                       <img
                         src={`http://localhost:8080/api/product/product-photo/${p._id}`}
@@ -65,7 +65,7 @@ const Products = () => {
                         <p className="product-description">{p.team}</p>
                       </div>
                     </div>
-                  </Link>
+                  </NavLink>
                 ))
               )}
             </div>

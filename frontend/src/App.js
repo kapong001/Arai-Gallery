@@ -16,16 +16,27 @@ import CreateProduct from "./pages/Admin/CreateProduct";
 import Users from "./pages/Admin/Users";
 import Products from "./pages/Admin/Products";
 import UpdateProducts from "./pages/Admin/UpdateProducts";
+import CollectionPage from "./pages/CollectionPage";
+import SearchResult from "./pages/SearchResult";
+import ProductDetail from "./pages/ProductDetail";
+import EPLCollectionPage from "./pages/EPLCollectionPage";
+import ProfileUser from "./pages/ProfileUser";
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<LandPage/>}/>
+
         <Route path="/account/login" element={<LoginPage/>}/>
         <Route path="/account/register" element={<RegisterPage/>}/>
         
+        <Route path="/collection" element={<CollectionPage/>}/>
+        <Route path="/category/:slug" element={<EPLCollectionPage/>}/>
+        
         <Route path="/dashboard" element={<PrivateRoute/>}> 
           <Route path="user" element={<DashboardPage/>}/>
+          <Route path="user/profile" element={<ProfileUser/>}/>
         </Route> 
 
         
@@ -37,16 +48,16 @@ function App() {
           <Route path="admin/products" element={<Products/>}/>
           <Route path="admin/users" element={<Users/>}/>
         </Route>
+        <Route path="/product/:slug" element={<ProductDetail/>}/>
+        <Route path="/search" element={<SearchResult/>}/>    
 
         <Route path="/community" element={<CommuPage/>}/>    
         <Route path="/contact" element={<ContactPage/>}/> 
         <Route path="/services" element={<ServicePage/>}/> 
         <Route path="/social" element={<SocialPage/>}/> 
-        <Route path="/community" element={<CommuPage/>}/> 
         <Route path="*" element={<Notfoundpage/>}/>
       </Routes>
     </>
   );
 }
-
 export default App;

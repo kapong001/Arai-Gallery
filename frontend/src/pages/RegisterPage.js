@@ -41,6 +41,7 @@ const RegisterPage = () =>{
                 className="form-control"
                 id = "exampleInputeEmail1"
                 placeholder="NAME"
+                style={{ borderRadius: 0}}
                 required
                 />
                 <input
@@ -50,6 +51,7 @@ const RegisterPage = () =>{
                 className="form-control"
                 id = "exampleInputEmail1"
                 placeholder="EMAIL"
+                style={{ borderRadius: 0}}
                 required
                 />
                 <input
@@ -59,6 +61,7 @@ const RegisterPage = () =>{
                 className="form-control"
                 id = "exampleInputContact1"
                 placeholder="CONTACT"
+                style={{ borderRadius: 0}}
                 required
                 />
                 <input
@@ -68,6 +71,7 @@ const RegisterPage = () =>{
                 className="form-control"
                 id = "exampleInputPassword1"
                 placeholder="PASSWORD"
+                style={{ borderRadius: 0}}
                 required
                 />
                 {/* <input

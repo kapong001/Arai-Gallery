@@ -1,28 +1,29 @@
 import userModel from "../models/userModel.js";
-import {comparePassword, hashPassword}  from "../helpers/authHelper.js";
+import { comparePassword, hashPassword } from "../helpers/authHelper.js";
 import JWT from 'jsonwebtoken';
 
+//register
 export const registerController = async (req, res) => {
-    try{
-        const {name, email ,contact ,password} = req.body;
+    try {
+        const { name, email, contact, password } = req.body;
         //validations 
-        if(!name){
-            return res.send({message:'Name is required'})
+        if (!name) {
+            return res.send({ message: 'Name is required' })
         }
-        if(!email){
-            return res.send({message:'Email is required'})
+        if (!email) {
+            return res.send({ message: 'Email is required' })
         }
-        if(!contact){
-            return res.send({message:'Contact is required'})
+        if (!contact) {
+            return res.send({ message: 'Contact is required' })
         }
-        if(!password){
-            return res.send({message:'Password is required'})
+        if (!password) {
+            return res.send({ message: 'Password is required' })
         }
 
         //check user
-        const existingUser = await userModel.findOne({email})
+        const existingUser = await userModel.findOne({ email })
         //existing user
-        if(existingUser){
+        if (existingUser) {
             return res.status(200).send({
                 success: false,
                 message: 'Already Register please login',
@@ -32,61 +33,61 @@ export const registerController = async (req, res) => {
         const hashedPassword = await hashPassword(password);
         //save
         const user = await new userModel({
-            name, 
+            name,
             email,
             contact,
-            password : hashedPassword ,
+            password: hashedPassword,
         }).save();
 
         res.status(201).send({
-            success:true,
-            message:"User Register Succesfully",
+            success: true,
+            message: "User Register Succesfully",
             user,
         });
-    }catch(error){
+    } catch (error) {
         console.log(error)
         res.status(500).send({
-            success:false,
-            message:'Error in Registeration',
+            success: false,
+            message: 'Error in Registeration',
             error,
         })
     }
 };
 
 //POST LOGIN
-export const loginController = async (req, res) =>{
-    try{
-        const {email, password} = req.body
+export const loginController = async (req, res) => {
+    try {
+        const { email, password } = req.body
         //validation
-        if(!email || !password){
+        if (!email || !password) {
             return res.status(404).send({
-                success:false,
-                message:'Invalid email or passsword'
+                success: false,
+                message: 'Invalid email or passsword'
             })
         }
         //check user
-        const user = await userModel.findOne({email})
-        if(!user){
+        const user = await userModel.findOne({ email })
+        if (!user) {
             return res.status(404).send({
-                success:false,
-                message:'Email is not resgistered',
+                success: false,
+                message: 'Email is not resgistered',
             })
         }
-        const match = await comparePassword(password,user.password)
-        if(!match){
+        const match = await comparePassword(password, user.password)
+        if (!match) {
             return res.status(200).send({
-                success:false,
-                message:'Invalid Password'
+                success: false,
+                message: 'Invalid Password'
             })
         }
         //token
-        const token = await JWT.sign({_id:user._id}, process.env.JWT_SECRET, {
+        const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
             expiresIn: "7d"
         });
         res.status(200).send({
-            success:true,
-            message:"login succesfully",
-            user:{
+            success: true,
+            message: "login succesfully",
+            user: {
                 name: user.name,
                 email: user.email,
                 contact: user.contact,
@@ -94,17 +95,55 @@ export const loginController = async (req, res) =>{
             },
             token,
         });
-    }catch(error){
+    } catch (error) {
         console.log(error);
         res.status(500).send({
-            success:false,
-            message:'Error in login',
+            success: false,
+            message: 'Error in login',
             error,
-        });   
+        });
     }
 };
 
 //test controller 
-export const testController = (req, res) =>{
-    res.send('Protected Route');
-}
+export const testController = (req, res) => {
+    try {
+        res.send('Protected Route');
+    } catch (error) {
+        console.log(error);
+        res.send({ error });
+    }
+};
+
+//update profile
+export const updateProfileController = async (req, res) => {
+    try{
+        const {name, email, password, contact} = req.body
+        const user = await userModel.findById(req.user._id)
+        //password
+        if(password && password.length < 6){
+            return res.json({error:'Password is required and 6 character long'})
+        }
+        const hashedPassword = password ? await hashPassword(password): undefined;
+        const updatedUser = await userModel.findByIdAndUpdate(
+            req.user._id,
+            {
+                name: name || user.name,
+                password: hashedPassword || user.password,
+                contact: contact || user.contact,
+            },
+            { new : true}
+        );
+        res.status(200).send({
+            success:true,
+            message:"Profile Updated Successfully",
+            updatedUser,
+        });
+    }catch(error){
+        console.log(error)
+        res.status(400).send({
+            success:false,
+            message:'Error update profile'
+        })
+    }
+};

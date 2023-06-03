@@ -80,6 +80,7 @@ const CreateProduct = () => {
                 showSearch
                 className='form-select mb-3'
                 onChange={(value) => { setCategory(value) }}
+                style={{ borderRadius: 0}}
               >
                 {categories?.map((c) => (
                   <Option key={c._id} value={c._id}>
@@ -88,7 +89,7 @@ const CreateProduct = () => {
                 ))}
               </Select>
               <div className='mb-3'>
-                    <label className='btn btn-outline-secondary col-md-12'>
+                    <label className='btn btn-outline-secondary col-md-12' style={{ borderRadius: 0}}>
                         {photo ? photo.name : "UPLOAD PHOTO"}
                         <input 
                             type='file' 
@@ -118,6 +119,7 @@ const CreateProduct = () => {
                 placeholder='WRITE A NAME'
                 className='form-control'
                 onChange={(e) => setName(e.target.value)}
+                style={{ borderRadius: 0}}
                 />
               </div>
               <div className='mb-3'>
@@ -126,6 +128,7 @@ const CreateProduct = () => {
                 placeholder='WRITE A TEAM'
                 className='form-control'
                 onChange={(e) => setTeam(e.target.value)}
+                style={{ borderRadius: 0}}
                 />
               </div>
               <div className='mb-3'>
@@ -134,6 +137,7 @@ const CreateProduct = () => {
                 placeholder='WRITE A KIT'
                 className='form-control'
                 onChange={(e) => setKit(e.target.value)}
+                style={{ borderRadius: 0}}
                 />
               </div>
               <div className='mb-3'>
@@ -142,6 +146,7 @@ const CreateProduct = () => {
                 placeholder='WRITE A DESCRIPTION'
                 className='form-control'
                 onChange={(e) => setDescription(e.target.value)}
+                style={{ borderRadius: 0}}
                 />
               </div>
               <div className='mb-3'>
@@ -150,10 +155,11 @@ const CreateProduct = () => {
                 placeholder='WRITE A UPLOADER'
                 className='form-control'
                 onChange={(e) => setOwner(e.target.value)}
+                style={{ borderRadius: 0}}
                 />
               </div>
               <div className='mb-3'>
-                    <button className='btn btn-dark w-100' onClick={handleCreate}>CREATE PRODUCT</button>
+                    <button className='btn btn-dark w-100' onClick={handleCreate} style={{ borderRadius: 0}}>CREATE PRODUCT</button>
               </div>
             </div>
           </div>
