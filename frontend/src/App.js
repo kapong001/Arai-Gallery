@@ -33,7 +33,8 @@ function App() {
         
         <Route path="/collection" element={<CollectionPage/>}/>
         <Route path="/category/:slug" element={<EPLCollectionPage/>}/>
-        
+
+
         <Route path="/dashboard" element={<PrivateRoute/>}> 
           <Route path="user" element={<DashboardPage/>}/>
           <Route path="user/profile" element={<ProfileUser/>}/>

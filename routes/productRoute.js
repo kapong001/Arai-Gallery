@@ -6,6 +6,7 @@ import {
     deleteProductController, 
     getProductController, 
     getSingleProductController, 
+
     productCategoryController, 
     productCountController, 
     productFiltersController, 
@@ -13,7 +14,8 @@ import {
     productPhotoController,
     realtedProductController, 
     searchProductController, 
-    updateProductController
+    updateProductController,
+    userCollectionController
 } from "../controllers/productController.js";
 
 import formidable from 'express-formidable';
@@ -68,4 +70,7 @@ router.get('/related-product/:pid/:cid', realtedProductController)
 
 //category wise product
 router.get('/product-category/:slug', productCategoryController)
+
+router.post('/like/:pid' ,requireSignIn ,userCollectionController)
+
 export default router

@@ -22,7 +22,6 @@ const AdminMenu = () => {
           <Link to="/dashboard/admin" className="list-group-item list-group-item-light" >
             <h5>Admin Dashboard</h5>
           </Link>
-          
           <NavLink to="/dashboard/admin/create-category" className="list-group-item list-group-item-light">
             Create Category
           </NavLink>

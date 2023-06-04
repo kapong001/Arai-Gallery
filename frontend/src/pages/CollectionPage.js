@@ -4,6 +4,9 @@ import axios from "axios";
 import { Checkbox } from "antd";
 import SearchInput from "../components/Form/SearchInput";
 import { Link } from "react-router-dom";
+const scrollToTop = () => {
+    window.scrollTo(0, 0);
+};
 const CollectionPage = () => {
     const [products, setProducts] = useState([]);
     const [category, setcategory] = useState([]);
@@ -129,7 +132,7 @@ const CollectionPage = () => {
                 <div className="col-md-10">
                     <div className="d-flex flex-wrap">
                         {products?.map((p) => (
-                            <Link to={`/product/${p.slug}`} key={p._id}>
+                            <Link to={`/product/${p.slug}`} key={p._id} onClick={scrollToTop}>
                                 <div
                                     className="card m-2"
                                     style={{ width: "30rem", borderRadius: 0 }}

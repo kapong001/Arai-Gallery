@@ -2,6 +2,7 @@ import slugify from "slugify";
 import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js"
 import fs from 'fs';
+import orderModels from "../models/orderModels.js";
 
 
 //create product
@@ -310,3 +311,35 @@ export const productCategoryController = async (req, res) => {
         });
     }
 };
+
+//add collection 
+export const userCollectionController = async (req, res) => {
+    try {
+        const { pid } = req.params;
+        const product = await productModel.findById(pid);
+        if (!product) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        const existingOrder = await orderModels.findOne({ collector: req.user._id });
+        if (existingOrder) {
+            existingOrder.products.push(product._id);
+            await existingOrder.save();
+            return res.json({ success: true, order: existingOrder });
+        }
+        const order = new orderModels({
+            products: [product._id],
+            collector: req.user._id
+        });
+        await order.save();
+        res.json({ success: true, order });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+
+  
+  
+
+
