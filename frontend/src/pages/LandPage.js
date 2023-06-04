@@ -20,7 +20,9 @@ const LandPage = () => {
     return (
         <Layout>
             <div className='landing-pic-container'>
-                <img src={LandingPic} alt="LandingPic" />
+                <Link to='/collection'>
+                    <img src={LandingPic} alt="LandingPic" />
+                </Link>
                 <Link to='/collection' className="landing-pic-text">COLLECTION</Link>
             </div>
 

@@ -112,16 +112,17 @@ code {
   position: absolute;
   top: 45%;
   left: 50%;
-  transform: translate(-50%, 550%);
+  transform: translate(-50%, 550%) scale(1.5);
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: lighter;
   text-decoration: none;
   z-index: 1;
+  background-color: hsla(0, 0%, 100%, 0.555);
 }
 
-.landing-pic-text:hover {
+/* .landing-pic-text:hover {
   text-decoration: underline;
-}
+} */
 
 .landing-pic-container img {
   margin-top: 0;

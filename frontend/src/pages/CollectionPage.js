@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import { Checkbox } from "antd";
@@ -48,19 +48,19 @@ const CollectionPage = () => {
             console.log(error)
         }
     }
-    
-    useEffect(() =>{
+
+    useEffect(() => {
         if (page === 1) return;
         loadMore();
     }, [page]);
     //loadmore
-    const loadMore = async () =>{
-        try{
+    const loadMore = async () => {
+        try {
             setLoading(true)
-            const {data} = await axios.get(`http://localhost:8080/api/product/product-list/${page}`)
+            const { data } = await axios.get(`http://localhost:8080/api/product/product-list/${page}`)
             setLoading(false)
             setProducts([...products, ...data?.products]);
-        }catch (error){
+        } catch (error) {
             console.log(error);
             setLoading(false);
         }
@@ -102,7 +102,7 @@ const CollectionPage = () => {
             <div className="container-fluid row mt-3">
                 <div className="col-md-2">
                     <div className="text-center">
-                        <SearchInput/>
+                        <SearchInput />
                     </div>
                     <div className="text-center mt-3">
                         <h6>Filter League</h6>
@@ -130,37 +130,39 @@ const CollectionPage = () => {
                     <div className="d-flex flex-wrap">
                         {products?.map((p) => (
                             <Link to={`/product/${p.slug}`} key={p._id}>
-                            <div
-                                className="card m-2"
-                                style={{ width: "30rem", borderRadius: 0 }}
-                                key={p._id}
-                            >
-                                <img
-                                    src={`http://localhost:8080/api/product/product-photo/${p._id}`}
-                                    className="card-img-top"
-                                    alt={p.name}
-                                    style={{ height: "40rem", objectFit: "cover" }}
-                                />
-                                <div className="card-body" style={{ padding: "0rem" }}>
-                                    <p className="card-title text-center">{p.name}</p>
+                                <div
+                                    className="card m-2"
+                                    style={{ width: "30rem", borderRadius: 0 }}
+                                    key={p._id}
+                                >
+                                    <img
+                                        src={`http://localhost:8080/api/product/product-photo/${p._id}`}
+                                        className="card-img-top"
+                                        alt={p.name}
+                                        style={{ height: "40rem", objectFit: "cover" }}
+                                    />
+                                    <div className="card-body" style={{ padding: "0rem" }}>
+                                        <p className="card-title text-center">{p.name}</p>
+                                    </div>
                                 </div>
-                            </div>
                             </Link>
                         ))}
                     </div>
                     <div className="m-2 p-3">
                         {products && products.length < total && (
                             <button
-                                className="btn btn-dark"
+                                className="btn btn-light"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setPage(page + 1);
                                 }}
+                                style={{ borderRadius: 0, width: '96%'}}
                             >
                                 {loading ? " Loading ..." : "Loadmore"}
                             </button>
                         )}
                     </div>
+
                 </div>
             </div>
         </Layout>
