@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import CategoryForm from '../../components/Form/CategoryForm';
 import { Modal } from 'antd';
-
+import Swal from 'sweetalert2';
 const CreateCatagory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState('');
@@ -19,7 +19,10 @@ const CreateCatagory = () => {
     try {
       const { data } = await axios.post(`http://localhost:8080/api/category/create-category`, { name });
       if (data.success) {
-        toast.success(`${name} is created`);
+        Swal.fire({
+          icon:'success',
+          title: `${name} IS CREATED`
+        })
         getAllCategory();
       } else {
         toast.error(data.message);
@@ -53,7 +56,10 @@ const CreateCatagory = () => {
     try {
       const { data } = await axios.put(`http://localhost:8080/api/category/update-category/${selected._id}`, { name: updatedName });
       if (data.success) {
-        toast.success(`${updatedName} is updated`);
+        Swal.fire({
+          icon:'success',
+          title: `${updatedName} IS UPDATED`
+        })
         setSelected(null);
         setUpdatedName('');
         setOpen(false);
@@ -71,7 +77,11 @@ const CreateCatagory = () => {
     try {
       const { data } = await axios.delete(`http://localhost:8080/api/category/delete-category/${pId}`);
       if (data.success) {
-        toast.success(`Category is deleted`);
+        Swal.fire({
+          icon:'success',
+          title: `CATEGORY DELETED`
+        })
+        
       } else {
         toast.error(data.message);
       }
@@ -116,7 +126,7 @@ const CreateCatagory = () => {
                         >
                           Edit
                         </button>
-                        <button className="btn btn-light" onClick={() => handleDelete(c._id)} style={{ borderRadius: 0}} >
+                        <button className="btn btn-light ms-1" onClick={() => handleDelete(c._id)} style={{ borderRadius: 0}} >
                           Delete
                         </button>
                       </td>

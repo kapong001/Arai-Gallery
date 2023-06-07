@@ -49,7 +49,7 @@ const EPLCollectionPage = () => {
                                     src={`http://localhost:8080/api/product/product-photo/${p._id}`}
                                     className='card-img-top'
                                     alt={p.name}
-                                    style={{ height: '40rem', objectFit: 'cover' }}
+                                    style={{ height: '40rem', objectFit: 'contain', borderRadius: 0 }}
                                 />
                                 <div
                                     className='card-body'

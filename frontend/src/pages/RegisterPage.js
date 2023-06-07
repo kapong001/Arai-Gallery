@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import toast from "react-hot-toast";
+import Swal from 'sweetalert2'
 const RegisterPage = () =>{
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
@@ -21,14 +21,26 @@ const RegisterPage = () =>{
                 password
             });
             if(res.data.success){
-                toast.success(res.data.message);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SUCCESS',
+                    text: `${res.data.message}`
+                })
                 navigate("/account/login");
             }else{
-                toast.error(res.data.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'FAIL',
+                    text: `${res.data.message}`
+                })
             }
         }catch(error){
             console.log(error);
-            toast.error("Something went wrong");
+            Swal.fire({
+                icon: 'error',
+                title: 'FAIL',
+                text: "Something went wrong"
+            })
         }
     };
     return(

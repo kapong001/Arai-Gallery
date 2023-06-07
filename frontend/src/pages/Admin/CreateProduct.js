@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import AdminMenu from '../../components/AdminMenu';
 import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Select } from 'antd';
@@ -50,7 +51,10 @@ const CreateProduct = () => {
         .post(`http://localhost:8080/api/product/create-product`, productData)
         .then((response) => {
           console.log(response);
-          toast.success('Product Created Successfully');
+          Swal.fire({
+            icon: 'success',
+            title: 'Product Created'
+          })
           navigate('/dashboard/admin/products');
         })
         .catch((error) => {

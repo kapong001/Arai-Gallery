@@ -28,7 +28,7 @@ const SearchResult = () => {
                                     src={`http://localhost:8080/api/product/product-photo/${p._id}`}
                                     className='card-img-top'
                                     alt={p.name}
-                                    style={{ height: '40rem', objectFit: 'cover' }}
+                                    style={{ height: '40rem', objectFit: 'contain' }}
                                 />
                                 <div className='card-body' style={{ padding: '0rem' }}>
                                     <p className='card-title text-center'>{p.name}</p>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout";
 import AdminMenu from "../../components/AdminMenu";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
@@ -52,7 +52,11 @@ const UpdateProducts = () => {
         }
         } catch (error) {
         console.log(error);
-        toast.error('Something went wrong in getting category');
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong in getting category '
+        })
+        
         }
     };
 
@@ -78,12 +82,17 @@ const UpdateProducts = () => {
             `http://localhost:8080/api/product/update-product/${id}`,
             productData
           );
-          
-          toast.success("Product Updated Successfully");
+          Swal.fire({
+            icon: 'success',
+            title: 'Product Updated '
+          })
           navigate("/dashboard/admin/products");
         } catch (error) {
           console.log(error);
-          toast.error("Something went wrong");
+          Swal.fire({
+            icon: 'success',
+            title: 'Something Went Wrong '
+          })
         }
     };
     //delete a product
@@ -94,11 +103,17 @@ const UpdateProducts = () => {
         const { data } = await axios.delete(
             `http://localhost:8080/api/product/product-delete/${id}`
         );
-        toast.success("Product Deleted Succfully");
+        Swal.fire({
+          icon: 'success',
+          title: 'Product Deleted'
+        })
         navigate("/dashboard/admin/products");
         } catch (error) {
         console.log(error);
-        toast.error("Something went wrong");
+        Swal.fire({
+          icon: 'error',
+          title: 'Something Went Wrong'
+        })
         }
     };
     return (

@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import UserMenu from '../components/UserMenu'
 import { useAuth } from '../context/auth'
 import { toast } from 'react-hot-toast'
+import Swal from 'sweetalert2'
 import axios from 'axios'
 const ProfileUser = () => {
     //context
@@ -39,7 +40,10 @@ const ProfileUser = () => {
                 ls = JSON.parse(ls);
                 ls.user = data.updatedUser;
                 localStorage.setItem("auth", JSON.stringify(ls));
-                toast.success("Profile Updated Succesfully")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Profile Updated Succesfully'
+                })
             }
         } catch (error) {
             console.log(error);

@@ -1,15 +1,14 @@
-import {Routes, Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 import LandPage from "./pages/LandPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import CommuPage from "./pages/CommuPage";
 import Notfoundpage from "./pages/Notfoundpage";
 import ContactPage from "./pages/ContactPage";
 import ServicePage from "./pages/ServicePage";
 import SocialPage from "./pages/SocialPage";
 import PrivateRoute from "./components/Routes/Private";
 import DashboardPage from "./pages/DashboardPage";
-import AdminRoute from "./components/Routes/AdminRoute"
+import AdminRoute from "./components/Routes/AdminRoute";
 import AdminDashboardPage from "./pages/Admin/AdminDashboard";
 import CreateCatagory from "./pages/Admin/CreateCatagory";
 import CreateProduct from "./pages/Admin/CreateProduct";
@@ -21,42 +20,42 @@ import SearchResult from "./pages/SearchResult";
 import ProductDetail from "./pages/ProductDetail";
 import EPLCollectionPage from "./pages/EPLCollectionPage";
 import ProfileUser from "./pages/ProfileUser";
+import LikeCollectionPage from "./pages/LikeCollectionPage";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<LandPage/>}/>
+        <Route path="/" element={<LandPage />} />
 
-        <Route path="/account/login" element={<LoginPage/>}/>
-        <Route path="/account/register" element={<RegisterPage/>}/>
-        
-        <Route path="/collection" element={<CollectionPage/>}/>
-        <Route path="/category/:slug" element={<EPLCollectionPage/>}/>
+        <Route path="/account/login" element={<LoginPage />} />
+        <Route path="/account/register" element={<RegisterPage />} />
 
+        <Route path="/collection" element={<CollectionPage />} />
+        <Route path="/category/:slug" element={<EPLCollectionPage />} />
 
-        <Route path="/dashboard" element={<PrivateRoute/>}> 
-          <Route path="user" element={<DashboardPage/>}/>
-          <Route path="user/profile" element={<ProfileUser/>}/>
-        </Route> 
-
-        
-        <Route path="/dashboard" element={<AdminRoute/>}> 
-          <Route path="admin" element={<AdminDashboardPage/>}/>
-          <Route path="admin/create-category" element={<CreateCatagory/>}/>
-          <Route path="admin/create-product" element={<CreateProduct/>}/>
-          <Route path="admin/products/:slug" element={<UpdateProducts/>}/>
-          <Route path="admin/products" element={<Products/>}/>
-          <Route path="admin/users" element={<Users/>}/>
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="user" element={<DashboardPage />} />
+          <Route path="user/profile" element={<ProfileUser />} />
+          <Route path="user/likes" element={<LikeCollectionPage />} />
         </Route>
-        <Route path="/product/:slug" element={<ProductDetail/>}/>
-        <Route path="/search" element={<SearchResult/>}/>    
 
-        <Route path="/community" element={<CommuPage/>}/>    
-        <Route path="/contact" element={<ContactPage/>}/> 
-        <Route path="/services" element={<ServicePage/>}/> 
-        <Route path="/social" element={<SocialPage/>}/> 
-        <Route path="*" element={<Notfoundpage/>}/>
+        <Route path="/dashboard" element={<AdminRoute />}>
+          <Route path="admin" element={<AdminDashboardPage />} />
+          <Route path="admin/create-category" element={<CreateCatagory />} />
+          <Route path="admin/create-product" element={<CreateProduct />} />
+          <Route path="admin/products/:slug" element={<UpdateProducts />} />
+          <Route path="admin/products" element={<Products />} />
+          <Route path="admin/users" element={<Users />} />
+        </Route>
+
+        <Route path="/product/:slug" element={<ProductDetail />} />
+        <Route path="/search" element={<SearchResult />} />
+      
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/services" element={<ServicePage />} />
+        <Route path="/social" element={<SocialPage />} />
+        <Route path="*" element={<Notfoundpage />} />
       </Routes>
     </>
   );

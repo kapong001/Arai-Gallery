@@ -43,7 +43,7 @@ const Products = () => {
                 type="text"
                 className="form-control form-control-sm"
                 style={{ width: '75%' }}
-                placeholder="Search Team"
+                placeholder="Search BY Team"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />

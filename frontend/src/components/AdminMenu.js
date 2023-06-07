@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink,Link } from 'react-router-dom';
 import { useAuth } from '../context/auth'; 
-// import { toast } from 'react-hot-toast';
+import Swal from 'sweetalert2'
+
 const AdminMenu = () => {
   const [auth, setAuth] = useAuth();
 
@@ -12,7 +13,10 @@ const AdminMenu = () => {
       token: "",
       });
       localStorage.removeItem("auth");
-      // toast.success("Logout แล้วจ่ะ");
+      Swal.fire({
+        icon: 'success',
+        title: "LOGOUT BYEBYE I HUA POKE",
+    })
   };
 
   return (
@@ -31,9 +35,9 @@ const AdminMenu = () => {
           <NavLink to="/dashboard/admin/products" className="list-group-item list-group-item-light">
             Products
           </NavLink>
-          <NavLink to="/dashboard/admin/users" className="list-group-item list-group-item-light">
+          {/* <NavLink to="/dashboard/admin/users" className="list-group-item list-group-item-light">
             Users
-          </NavLink>
+          </NavLink> */}
           <NavLink onClick={handleLogout} to="/"className="list-group-item list-group-item-light">
             Logout
           </NavLink>
