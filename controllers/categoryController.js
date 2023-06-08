@@ -98,6 +98,26 @@ export const singleCategoryController = async (req, res) => {
     }
 };
 
+//single category by id
+export const singleCategoryByIdController = async (req, res) => {
+    try{
+        const category = await categoryModel.findById({ _id: req.params.pid});
+        res.status(200).send({
+            success: true,
+            message:'Get Single Category Succesfully',
+            category
+        });
+    }catch (error){
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            error,
+            message: 'Error while getting Single Category',
+        });
+    }
+};
+
+
 export const deleteCategoryController = async (req,res) =>{
     try{
         const {id} = req.params 

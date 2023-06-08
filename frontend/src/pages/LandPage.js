@@ -13,10 +13,16 @@ const scrollToTop = () => {
 };
 
 const LandPage = () => {
-  const categoryData = {
+  const categoryDataRight = {
     _id: "64745455f96c79ce1648ffd1",
     name: "EPL",
     slug: "epl",
+    __v: 0
+  };
+  const categoryDataLeft = {
+    _id: "6479baa000e139a059b274dc",
+    name: "La Liga",
+    slug: "la-liga",
     __v: 0
   };
 
@@ -25,7 +31,7 @@ const LandPage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % 2);
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -58,8 +64,8 @@ const LandPage = () => {
       <Link to="/collection" className="landing-pic-text">
         COLLECTION
       </Link>
-      <div className="dual-image-container" key={categoryData._id}>
-        <Link to="/usercollection">
+      <div className="dual-image-container" >
+        <Link key={categoryDataLeft._id} to={`/category/${categoryDataLeft.slug}`}>
           <img
             className="left-image"
             src={CategoryLeft}
@@ -67,7 +73,7 @@ const LandPage = () => {
             onClick={scrollToTop}
           />
         </Link>
-        <Link to={`/category/${categoryData.slug}`}>
+        <Link key={categoryDataRight._id} to={`/category/${categoryDataRight.slug}`}>
           <img
             className="right-image"
             src={CategoryRight}

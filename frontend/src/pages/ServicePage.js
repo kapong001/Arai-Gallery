@@ -15,7 +15,7 @@ const ServicePage = () =>{
                             <div className="address">
                                 <div className="email">
                                     <h6>request</h6>
-                                    <p>เสื้อต้องพรีเมี่ยมจริง แอดมินถึงจะรับ</p>
+                                    <p>เสื้อต้องเป็นตัวหายาก แอดมินถึงจะรับ</p>
                                 </div>
                                 <div className="location">
                                     <h6>Based in</h6>

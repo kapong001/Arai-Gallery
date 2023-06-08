@@ -1,6 +1,6 @@
 import express from 'express';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
-import { categoryController, createCategoryController, deleteCategoryController, singleCategoryController, updateCategoryController } from '../controllers/categoryController.js';
+import { categoryController, createCategoryController, deleteCategoryController, singleCategoryByIdController, singleCategoryController, updateCategoryController } from '../controllers/categoryController.js';
 const router = express.Router()   
 
 // routes
@@ -25,6 +25,8 @@ router.put(
 router.get('/get-category', categoryController);
 //single category
 router.get('/single-category/:slug', singleCategoryController);
+//single category bt ID
+router.get('/singleid-category/:pid', singleCategoryByIdController);
 //delete category
 router.delete('/delete-category/:id', requireSignIn, isAdmin, deleteCategoryController);
 export default router;

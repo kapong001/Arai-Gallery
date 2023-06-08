@@ -59,6 +59,7 @@ const Products = () => {
                         src={`http://localhost:8080/api/product/product-photo/${p._id}`}
                         alt={p.name}
                         className="product-image"
+                        style={{objectFit: 'contain'}}
                       />
                       <div>
                         <p className="product-title">{p.name}</p>

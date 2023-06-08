@@ -21,6 +21,10 @@ import ProductDetail from "./pages/ProductDetail";
 import EPLCollectionPage from "./pages/EPLCollectionPage";
 import ProfileUser from "./pages/ProfileUser";
 import LikeCollectionPage from "./pages/LikeCollectionPage";
+import RequestProduct from "./pages/UserRequestProduct";
+import RequestCollection from "./pages/Admin/RequestCollection";
+import UserRequestCollection from "./pages/UserRequestCollection";
+
 
 function App() {
   return (
@@ -31,6 +35,9 @@ function App() {
         <Route path="/account/login" element={<LoginPage />} />
         <Route path="/account/register" element={<RegisterPage />} />
 
+
+        <Route path="/usercollection" element={<UserRequestCollection />} />
+
         <Route path="/collection" element={<CollectionPage />} />
         <Route path="/category/:slug" element={<EPLCollectionPage />} />
 
@@ -38,6 +45,7 @@ function App() {
           <Route path="user" element={<DashboardPage />} />
           <Route path="user/profile" element={<ProfileUser />} />
           <Route path="user/likes" element={<LikeCollectionPage />} />
+          <Route path="user/products-request" element={<RequestProduct />} />
         </Route>
 
         <Route path="/dashboard" element={<AdminRoute />}>
@@ -47,6 +55,7 @@ function App() {
           <Route path="admin/products/:slug" element={<UpdateProducts />} />
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/users" element={<Users />} />
+          <Route path="admin/user-request" element={<RequestCollection />} />
         </Route>
 
         <Route path="/product/:slug" element={<ProductDetail />} />

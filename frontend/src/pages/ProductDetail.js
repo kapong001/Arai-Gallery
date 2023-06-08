@@ -54,7 +54,7 @@ const ProductDetail = () => {
       await axios.post(`http://localhost:8080/api/product/like/${product._id}`);
       Swal.fire({
         icon: 'success',
-        title: 'PRODUCT ADDED'
+        title: 'LIKED'
       });
     } catch (error) {
       console.log(error);
@@ -86,8 +86,11 @@ const ProductDetail = () => {
                   <Typography variant="h5" component="div">
                     {product.name}
                   </Typography>
-                  <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {product.team} / {product.owner_by} / {product.kit}
+                  <Typography sx={{ mb: 0 }} color="text.secondary">
+                    {product.team}    /   {product.kit}
+                  </Typography>
+                  <Typography sx={{ mb: 0 }} color="text.secondary">
+                    BY: {product.owner_by}
                   </Typography>
                   <Typography variant="body2">{product.description}</Typography>
                 </>
@@ -107,7 +110,7 @@ const ProductDetail = () => {
       </div>
       <div className="row luxury-section">
         <h2 className="m-2">Similar Products</h2>
-        <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap justify-content-start">
           {relateProducts?.map((p) => (
             <Link onClick={scrollToTop} to={`/product/${p.slug}`} key={p._id}>
               <div

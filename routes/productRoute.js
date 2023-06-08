@@ -3,18 +3,23 @@ import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
 import {
   CreateProductController,
+  ProductRequestController,
+  approveRequestController,
   deleteLikeController,
   deleteProductController,
   getLikeController,
   getProductController,
   getSingleProductByIDController,
   getSingleProductController,
+  getSingleProductController2,
   productCategoryController,
   productCountController,
   productFiltersController,
   productListController,
   productPhotoController,
   realtedProductController,
+  rejectRequestController,
+  requestListController,
   searchProductController,
   updateProductController,
   userCollectionController,
@@ -81,4 +86,18 @@ router.delete("/delete-like/:oid", requireSignIn, deleteLikeController);
 //get product by ID 
 router.get('/single-product-id/:pid', getSingleProductByIDController)
 
+//prodcut request
+router.post(
+  "/product-request",
+  requireSignIn,
+  formidable(),
+  ProductRequestController
+);
+
+router.get("/product-request-list", requestListController);
+
+router.post("/approve-request/:pid", approveRequestController);
+router.post("/reject-request/:pid", rejectRequestController);
+
+router.get("/single-product2/:productId", getSingleProductController2);
 export default router;

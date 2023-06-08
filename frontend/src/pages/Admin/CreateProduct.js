@@ -9,7 +9,7 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const CreateProduct = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [team, setTeam] = useState("");

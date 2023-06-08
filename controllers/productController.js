@@ -3,6 +3,7 @@ import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import fs from "fs";
 import orderModels from "../models/orderModels.js";
+import productRequestModel from "../models/productRequestModel.js";
 import { response } from "express";
 //create product
 export const CreateProductController = async (req, res) => {
@@ -123,7 +124,7 @@ export const getSingleProductByIDController = async (req, res) => {
 
 //get photo
 export const productPhotoController = async (req, res) => {
-    
+
     try {
         const product = await productModel.findById(req.params.pid).select("photo");
         if (product.photo.data) {
@@ -133,10 +134,10 @@ export const productPhotoController = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.status(500).send({
-        success: false,
-        message: "Error while getting photo",
-        error,
-    });
+            success: false,
+            message: "Error while getting photo",
+            error,
+        });
     }
 };
 
@@ -389,45 +390,188 @@ export const getLikeController = async (req, res) => {
 
 export const deleteLikeController = async (req, res, next) => {
     try {
-      const { oid } = req.params;
-      const { _id } = req.user;
-  
-      if (!req.user) {
-        const error = new Error("Unauthorized");
-        error.status = 401;
-        return next(error);
-      }
-  
-      const order = await orderModels.findOneAndUpdate(
-        {
-          collector: _id,
-          products: { $in: [oid] },
-        },
-        {
-          $pull: { products: oid },
+        const { oid } = req.params;
+        const { _id } = req.user;
+
+        if (!req.user) {
+            const error = new Error("Unauthorized");
+            error.status = 401;
+            return next(error);
         }
-      );
-  
-      if (!order) {
-        res.status(404).send({
-          success: false,
-          message: "Order not found or product does not exist",
+
+        const order = await orderModels.findOneAndUpdate(
+            {
+                collector: _id,
+                products: { $in: [oid] },
+            },
+            {
+                $pull: { products: oid },
+            }
+        );
+
+        if (!order) {
+            res.status(404).send({
+                success: false,
+                message: "Order not found or product does not exist",
+            });
+            return;
+        }
+        res.status(200).send({
+            success: true,
+            message: "Like Deleted",
         });
-        return;
-      }
-      res.status(200).send({
-        success: true,
-        message: "Like Deleted",
-      });
     } catch (error) {
-      console.log(error);
-      res.status(500).send({
-        success: false,
-        message: "Error while deleting product",
-        error,
-      });
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while deleting product",
+            error,
+        });
     }
-  };
-  
+};
 
 
+export const ProductRequestController = async (req, res) => {
+    try {
+        const { name, slug, team, kit, description, category, owner_by } =
+            req.fields;
+        const { photo } = req.files;
+        // console.log(55);
+
+        const products = new productRequestModel({
+            ...req.fields,
+            slug: slugify(name),
+            request_by: req.user._id,
+        });
+        if (photo) {
+            products.photo.data = fs.readFileSync(photo.path);
+            products.photo.contentType = photo.type;
+        }
+        // console.log(products);
+        console.log(req.user);
+        await products.save();
+        res.status(201).send({
+            success: true,
+            message: "Product Created",
+            products,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            error,
+            message: "Error in creating product",
+        });
+    }
+};
+
+export const requestListController = async (req, res) => {
+    try {
+        let productRequests = await productRequestModel.find({});
+
+        // Convert each photo buffer to base64
+        productRequests = productRequests.map((request) => {
+            if (request.photo && request.photo.data) {
+                const photo = Buffer.from(request.photo.data).toString("base64");
+                return { ...request._doc, photo };
+            }
+            return request;
+        });
+
+        res.status(200).send({
+            success: true,
+            productRequests,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({
+            success: false,
+            message: "error in per page ctrl",
+            error,
+        });
+    }
+};
+
+export const approveRequestController = async (req, res) => {
+    try {
+        let productRequests = await productRequestModel.findOne({
+            _id: req.params.pid,
+        });
+
+        const { name, slug, team, kit, description, category, owner_by } = productRequests;
+        const { photo } = productRequests;
+
+        console.log(name, slug, team, kit, description, category, photo);
+        const products = new productModel({
+            name,
+            slug,
+            team,
+            kit,
+            description,
+            category,
+            photo,
+            owner_by
+        });
+        products.save();
+
+        await productRequestModel.deleteOne({
+            _id: req.params.pid,
+        });
+        res.status(200).send({
+            success: true,
+            hi: "hi",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({
+            success: false,
+            message: "error in per page ctrl",
+            error,
+        });
+    }
+};
+
+export const rejectRequestController = async (req, res) => {
+    try {
+        await productRequestModel.deleteOne({
+            _id: req.params.pid,
+        });
+        res.status(200).send({
+            success: true,
+            hi: "hi",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({
+            success: false,
+            message: "error in per page ctrl",
+            error,
+        });
+    }
+};
+export const getSingleProductController2 = async (req, res) => {
+    try {
+        const product = await productRequestModel.findOne({
+            _id: req.params.productId,
+        });
+
+        // Convert photo data to base64 before sending it to the client
+        if (product.photo && product.photo.data) {
+            product.photo.data = Buffer.from(product.photo.data).toString("base64");
+        }
+
+        console.log(product);
+        res.status(200).send({
+            success: true,
+            message: "Single Product Fetched",
+            product,
+        });
+    } catch (error) {
+        console.error(error); // log the error
+        res.status(500).send({
+            success: false,
+            message: "Error while getting single product",
+            error,
+        });
+    }
+};

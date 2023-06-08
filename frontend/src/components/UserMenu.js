@@ -40,6 +40,19 @@ const UserMenu = () => {
                     >
                         LIKE
                     </NavLink>
+                    
+                    <NavLink
+                        to="/dashboard/user/products-request"
+                        className="list-group-item list-group-item-light"
+                    >
+                        REQUEST
+                    </NavLink>
+                    <NavLink
+                        to="/usercollection"
+                        className="list-group-item list-group-item-light"
+                    >
+                        REQUEST STATUS
+                    </NavLink>
                     <NavLink
                         onClick={handleLogout}
                         to="/"

@@ -7,7 +7,7 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 body {
@@ -160,7 +160,7 @@ code {
 .right-image {
   width: 50rem;
   height: 30rem;
-  object-fit: fill;
+  object-fit: contain;
   border: 0.0625rem solid black;
   margin: 3rem;
 }

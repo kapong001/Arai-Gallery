@@ -22,9 +22,13 @@ const DashboardPage = () => {
             <UserMenu handleLogout={handleLogout} />
           </div>
           <div className="col-md-9 col-lg-9 d-flex justify-content-center">
-            <div className="card w-100 p-3 p-sm-4" style={{ borderRadius: 0 }}>
+            <div className="card w-100 p-1 p-sm-4" style={{ borderRadius: 0 }}>
               <h4>Name: {auth?.user?.name}</h4>
+              <h1></h1>
+              <h1></h1>
               <h4>Email: {auth?.user?.email}</h4>
+              <h1></h1>
+              <h1></h1>
               <h4>Contact: {auth?.user?.contact}</h4>
             </div>
           </div>
